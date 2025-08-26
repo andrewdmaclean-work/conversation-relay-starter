@@ -1,0 +1,24 @@
+{
+  "name": "Twilio Conversation Relay",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "features": {},
+  "forwardPorts": [3000, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "HTTP Server",
+      "visibility": "public"
+    },
+    "8080": {
+      "label": "WebSocket Server", 
+      "visibility": "public"
+    }
+  },
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-json"
+      ]
+    }
+  }
+}

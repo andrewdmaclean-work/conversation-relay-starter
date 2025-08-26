@@ -1,44 +1,84 @@
-# Twilio WebSocket Relay Server - Replit Starter
+# Twilio WebSocket Relay Server - Multi-Platform Starter
 
-A simple WebSocket server for relaying Twilio conversations in real-time. This is a Replit starter template that makes it easy to deploy and test Twilio WebSocket integration.
+A simple WebSocket server for Twilio Conversation Relay. Works on Replit, GitHub Codespaces, and locally.
 
-## 🚀 Quick Start on Replit
+## 🚀 Quick Start
 
-1. **Fork this Repl** or use it as a template
-2. **Configure Twilio Secrets** (see setup section below)
-3. **Click Run** - the server will start automatically
-4. **Open the app** - Replit will show you the client interface
-5. **Start testing** with your Twilio conversations!
+### GitHub Codespaces
+1. **Open in Codespaces** - Click the green "Code" button → Codespaces → Create
+2. **Wait for setup** - Dependencies install automatically
+3. **Run the server**: `npm start`
+4. **Copy the webhook URL** from the terminal output
+5. **Configure Twilio** phone number webhook to point to `/voice`
 
-## 🔧 Replit Setup
+### Replit
+1. **Fork this Repl** or import from GitHub
+2. **Click Run** - starts automatically
+3. **Copy the webhook URL** from the console
+4. **Configure Twilio** phone number webhook
 
-### Add Twilio Credentials to Secrets
-
-In your Replit, go to the **Secrets** tab (🔒) and add these environment variables:
-
+### Local Development
+```bash
+npm install
+npm start
 ```
-TWILIO_ACCOUNT_SID=your_account_sid_here
-TWILIO_AUTH_TOKEN=your_auth_token_here
-TWILIO_API_KEY=your_api_key_here
-TWILIO_API_SECRET=your_api_secret_here
-```
 
-### Get Your Twilio Credentials
+## 🔧 Configuration
 
-1. **Sign up for Twilio** at [twilio.com](https://twilio.com)
-2. **Account SID & Auth Token**: Found on your [Twilio Console Dashboard](https://console.twilio.com)
-3. **API Key & Secret**: Create them in [API Keys section](https://console.twilio.com/project/api-keys)
+The server auto-detects the environment:
+- **Codespaces**: Uses `CODESPACE_NAME` and forwards ports 3000 & 8080
+- **Replit**: Uses `REPL_SLUG` for WebSocket URLs  
+- **Local**: Uses `localhost:3000`
 
-## ✨ Features
+## 📞 Twilio Setup
 
-- WebSocket server for real-time communication
-- Twilio Conversations API integration
-- JWT access token generation
-- Webhook support for conversation events
-- Built-in HTML client for testing
-- Message broadcasting to all connected clients
-- **Replit-optimized** with auto-configuration
-- **One-click deployment** ready
+1. Go to [Twilio Console → Phone Numbers](https://console.twilio.com/us1/develop/phone-numbers/manage/incoming)
+2. Select your phone number
+3. Set the webhook URL to: `your-server-url/voice`
+   - **Codespaces**: `https://your-codespace-name-3000.preview.app.github.dev/voice`
+   - **Replit**: `https://your-repl.your-username.repl.co/voice` 
+   - **Local**: `https://your-ngrok-url.ngrok.io/voice` (use ngrok for local testing)
+4. Save configuration
+5. Call your number to test!
+
+## 🔌 How It Works
+
+1. **Incoming call** → Twilio calls your `/voice` webhook
+2. **TwiML response** → Returns ConversationRelay pointing to your WebSocket
+3. **WebSocket connection** → Twilio connects to your server on port 8080
+4. **Voice processing** → Your server receives speech and can respond with TTS
+
+## 📋 Testing
+
+- **Call your number** and speak - server will echo back what you said
+- **Press number keys** - server will announce which key you pressed
+- **Check logs** - see real-time conversation events in the terminal
+
+## 🌐 Platform-Specific Notes
+
+### GitHub Codespaces
+- Ports 3000 & 8080 auto-forward with public visibility
+- Uses `.devcontainer` for consistent setup
+- WebSocket URLs auto-generate with Codespaces domain
+
+### Replit  
+- Built-in port forwarding on standard ports
+- Uses `.replit` configuration file
+- WebSocket URLs auto-generate with Replit domain
+
+### Local Development
+- Use ngrok to expose localhost to internet for Twilio webhooks
+- Run `ngrok http 3000` to get public URL
+
+## 🚨 Troubleshooting
+
+- **WebSocket connection fails**: Check port forwarding is enabled
+- **Webhook not receiving calls**: Verify URL is publicly accessible  
+- **TwiML errors**: Check server logs for JSON parsing errors
+
+---
+
+**Ready to handle voice calls with WebSockets! 🚀**
 
 ## 🌐 Replit Deployment
 
