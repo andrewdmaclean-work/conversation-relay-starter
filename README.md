@@ -103,6 +103,16 @@ connect.conversationRelay({
 });
 ```
 
+## 🚨 Troubleshooting
+
+- **WebSocket connection fails**: Check port forwarding is enabled
+- **Webhook not receiving calls**: Verify URL is publicly accessible  
+- **TwiML errors**: Check server logs for JSON parsing errors
+- **No voice response**: Verify ElevenLabs/Deepgram configuration
+- **Error when calling the server**: Make sure the required ports are publicly accessible.  
+  - **Codespaces**: Check that ports 3000 and 8080 are set to **Public** in the Ports tab.  
+  - **Local**: If using ngrok, ensure the tunnel is active and forwarding correctly.  
+  
 ---
 
 **Ready to handle voice calls with AI-powered conversations! 🚀**
