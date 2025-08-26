@@ -31,7 +31,7 @@ app.post('/voice', (req, res) => {
     interruptible: 'none',
     dtmfDetection: true,
     reportInputDuringAgentSpeech: 'none',
-    welcomeGreeting: 'Hi! Ask me anything!'
+    // welcomeGreeting: 'Hi! Ask me anything!'
   });
 
   console.log(response.toString());
